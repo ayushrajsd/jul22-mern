@@ -12,12 +12,12 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.use((req, res) => {
   res.status(404).send("Page not found");
 });
-const loggerMiddleware = (req, res, next) => {
-  console.log(
-    `Logged  ${req.url}  ${req.method} -- ${new Date().toISOString()}`
-  );
-  next();
-};
+// const loggerMiddleware = (req, res, next) => {
+//   console.log(
+//     `Logged  ${req.url}  ${req.method} -- ${new Date().toISOString()}`
+//   );
+//   next();
+// };
 // app.use(loggerMiddleware);
 // define a route - GET request
 app.get("/", (req, res) => {
@@ -81,4 +81,19 @@ app.get("/search", (req, res) => {
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+});
+
+const loggerMiddleware = (req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+};
+
+app.use(loggerMiddleware);
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the home page");
+});
+
+app.use((req, res) => {
+  res.status(404).send("Page not found");
 });
