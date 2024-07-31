@@ -69,7 +69,9 @@ app.get("/users", (req, res) => {
   res.json(users);
 });
 
-app.get("/special", loggerMiddleware, (req, res) => {
+// /special route - get method
+
+app.get("/special", loggerMiddleware, authMiddleware, (req, res) => {
   res.send("Special page");
 });
 
