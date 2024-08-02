@@ -1,13 +1,29 @@
 import React from "react";
-import { Form, Button, Input } from "antd";
+import { Form, Button, Input, message } from "antd";
 import { Link } from "react-router-dom";
+import { RegisterUser } from "../../api/users";
+import { response } from "express";
+
 function Register() {
+  const onFinish = async (values) => {
+    try {
+      const response = await RegisterUser(values);
+      if (response.success) {
+        message.success(response.message);
+      } else {
+        message.error(response.message);
+      }
+    } catch (err) {
+      console.log(err);
+      message.error(response.message);
+    }
+  };
   return (
     <>
       <main className="App-header">
         <h1>Register to Book My Show</h1>
         <section className="mw-500 text-center px-3">
-          <Form layout="vertical">
+          <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
               label="Name"
               htmlFor="name"
