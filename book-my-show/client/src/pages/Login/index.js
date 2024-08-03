@@ -12,6 +12,7 @@ function Login() {
       if (response.success) {
         console.log(response);
         message.success(response.message);
+        localStorage.setItem("token", response.data);
         navigate("/");
       } else {
         message.error(response.message);

@@ -1,4 +1,5 @@
-const { axiosInstance } = require("./index");
+// const { axiosInstance } = require("./index");
+import { axiosInstance } from "./index";
 
 // Register new user
 
