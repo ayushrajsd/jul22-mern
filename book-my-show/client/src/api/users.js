@@ -1,22 +1,21 @@
-// const { axiosInstance } = require("./index");
-import { axiosInstance } from "./index";
+const { axiosInstance } = require(".");
 
-// Register new user
+//Register new User
 
 export const RegisterUser = async (value) => {
   try {
-    const response = await axiosInstance.post("/api/users/register", value);
+    const response = await axiosInstance.post("api/users/register", value);
     return response.data;
   } catch (err) {
     console.log(err);
   }
 };
 
-export const LoginUser = async (values) => {
+export const LoginUser = async (value) => {
   try {
-    const response = await axiosInstance.post("/api/users/login", values);
+    const response = await axiosInstance.post("api/users/login", value);
     return response.data;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };

@@ -2,7 +2,6 @@ import React from "react";
 import { Form, Button, Input, message } from "antd";
 import { Link } from "react-router-dom";
 import { RegisterUser } from "../../api/users";
-import { response } from "express";
 
 function Register() {
   const onFinish = async (values) => {
@@ -13,11 +12,11 @@ function Register() {
       } else {
         message.error(response.message);
       }
-    } catch (err) {
-      console.log(err);
-      message.error(response.message);
+    } catch (error) {
+      message.error(error.message);
     }
   };
+
   return (
     <>
       <main className="App-header">
