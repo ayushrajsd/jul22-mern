@@ -1,6 +1,7 @@
 const express = require("express");
 const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 const userRouter = express.Router();
 
@@ -46,6 +47,17 @@ userRouter.post("/login", async (req, res) => {
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
   }
+});
+
+userRouter.get("/get-current-user", authMiddleware, async (req, res) => {
+  // console.log("headers", req.headers.authorization);
+  console.log("handler for get current user");
+  const user = await userModel.findById(req.body.userId).select("-password");
+  res.send({
+    success: true,
+    message: "You are authorized to go to the priotected route",
+    data: user,
+  });
 });
 
 module.exports = userRouter;
