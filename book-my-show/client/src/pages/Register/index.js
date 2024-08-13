@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Input, message } from "antd";
+import { Form, Button, Input, message, Radio } from "antd";
 import { Link } from "react-router-dom";
 import { RegisterUser } from "../../api/users";
 
@@ -74,6 +74,21 @@ function Register() {
               >
                 Register
               </Button>
+              <Form.Item
+                label="Register as a Partner"
+                htmlFor="role"
+                name="role"
+                className="d-block text-center"
+                initialValue={false}
+                rules={[{ required: true, message: "Please select an option" }]}
+              >
+                <div>
+                  <Radio.Group name="radiogroup" className="flex-start">
+                    <Radio value={"partner"}>Yes</Radio>
+                    <Radio value={"user"}>No</Radio>
+                  </Radio.Group>
+                </div>
+              </Form.Item>
             </Form.Item>
             <div>
               <p>

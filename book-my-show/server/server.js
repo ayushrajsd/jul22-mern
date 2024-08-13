@@ -5,6 +5,7 @@ require("dotenv").config(); // loads the environment variables from a .env file 
 const connectDB = require("./config/db");
 const userRouter = require("./routes/userRoutes");
 const moviesRouter = require("./routes/movieRoutes");
+const theatreRouter = require("./routes/theatreRoutes");
 
 connectDB();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 /** Routes */
 app.use("/api/users", userRouter);
 app.use("/api/movies", moviesRouter);
+app.use("/api/theatres", theatreRouter);
 
 app.listen(8082, () => {
   console.log("Server is running at port 8082");
