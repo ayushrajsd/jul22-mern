@@ -7,6 +7,7 @@ const userRouter = require("./routes/userRoutes");
 const moviesRouter = require("./routes/movieRoutes");
 const theatreRouter = require("./routes/theatreRoutes");
 const showRouter = require("./routes/showRoutes");
+const bookingRouter = require("./routes/bookingRoutes");
 
 connectDB();
 
@@ -16,6 +17,7 @@ app.use("/api/users", userRouter);
 app.use("/api/movies", moviesRouter);
 app.use("/api/theatres", theatreRouter);
 app.use("/api/shows", showRouter);
+app.use("/api/bookings", bookingRouter);
 
 app.listen(8082, () => {
   console.log("Server is running at port 8082");

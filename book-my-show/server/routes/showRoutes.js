@@ -87,13 +87,16 @@ router.get("/get-all-theatres-by-movie/:movie/:date", async (req, res) => {
 
   try {
     const { movie, date } = req.params;
+    console.log("movie", movie, "date", date);
     const shows = await Show.find({ movie, date }).populate("theatre");
+    console.log("shows", shows);
     const uniqueTheatres = [];
     shows.forEach((show) => {
       const isTheatre = uniqueTheatres.findIndex(
         (theatre) => theatre._id === show.theatre._id
       );
-      if (!isTheatre) {
+      console.log("isTheatre", isTheatre);
+      if (isTheatre < 0) {
         const showsOfThisTheatre = shows.filter(
           (showObj) => showObj.theatre._id === show.theatre._id
         );
@@ -103,6 +106,7 @@ router.get("/get-all-theatres-by-movie/:movie/:date", async (req, res) => {
         });
       }
     });
+    console.log("uniqueTheatres", uniqueTheatres);
     res.send({
       success: true,
       data: uniqueTheatres,
