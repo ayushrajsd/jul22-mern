@@ -1,3 +1,15 @@
+/***
+ * SMTP servers = simple mail transfer protocol
+ * how smtp servers works
+ *  1. writing the email ( composing the letter)
+ * 2. sending to SMTP server ( dropping at the post office )
+ * 3. routing the email ( post office will route the email to the destination)
+ * 4. recipient email serv ( destination post office)
+ * 5. emai; deliver ( mailbox deliver)
+ *
+ * nodemailer
+ */
+
 const router = require("express").Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 const authMiddleware = require("../middlewares/authMiddleware");
